@@ -1,0 +1,1585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big2Projects - Beyond Farming</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --deep-green: #1a5632;
+            --medium-green: #2d8a4e;
+            --light-green: #7cb342;
+            --accent-yellow: #ffd600;
+            --white: #ffffff;
+            --off-white: #f8f9fa;
+            --dark-text: #1a1a1a;
+            --gray-text: #666666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* Navigation */
+        .nav-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            box-shadow: 0 2px 20px rgba(26, 86, 50, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-wrapper.scrolled {
+            box-shadow: 0 2px 30px rgba(26, 86, 50, 0.15);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .tagline {
+            font-size: 0.65rem;
+            color: var(--gray-text);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        /* Mobile Navigation */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--deep-green);
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links.active {
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--white);
+            padding: 5rem 2rem 2rem;
+            z-index: 999;
+            gap: 1.5rem;
+            overflow-y: auto;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--medium-green);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--light-green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .coming-soon-badge {
+            background: var(--accent-yellow);
+            color: var(--dark-text);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            animation: pulse 2s infinite;
+            display: inline-block;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            min-height: 90vh;
+            background: linear-gradient(135deg, var(--deep-green) 0%, var(--medium-green) 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(124, 179, 66, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(124, 179, 66, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-text h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-yellow);
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        .hero-text p {
+            font-size: 1rem;
+            color: var(--white);
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.6s backwards;
+        }
+
+        .btn {
+            padding: 0.875rem 2rem;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-block;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--accent-yellow);
+            color: var(--dark-text);
+        }
+
+        .btn-primary:hover {
+            background: #ffed4e;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 214, 0, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--deep-green);
+            transform: translateY(-3px);
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            animation: fadeInUp 1s ease 0.8s backwards;
+        }
+
+        .stat-number {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 900;
+            color: var(--accent-yellow);
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--white);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 0.25rem;
+            display: block;
+        }
+
+        .hero-visual {
+            position: relative;
+            animation: fadeInRight 1s ease 0.5s backwards;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-image-container {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 15px;
+        }
+
+        /* App Coming Soon Banner */
+        .app-coming-soon {
+            padding: 2rem 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: var(--off-white);
+        }
+
+        .app-coming-soon-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .app-flyer {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+            display: block;
+        }
+
+        .app-coming-soon h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            color: var(--deep-green);
+            margin-bottom: 1rem;
+            position: relative;
+            line-height: 1.2;
+        }
+
+        .app-coming-soon p {
+            font-size: 1rem;
+            color: var(--dark-text);
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 3rem 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--deep-green);
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            color: var(--gray-text);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        /* About Section */
+        #about {
+            background: var(--off-white);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.75rem;
+            color: var(--deep-green);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .about-text p {
+            margin-bottom: 1.25rem;
+            line-height: 1.7;
+            color: var(--gray-text);
+            font-size: 0.95rem;
+        }
+
+        .mission-vision {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .mission-box, .vision-box {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(26, 86, 50, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .mission-box:hover, .vision-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .mission-box h4, .vision-box h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            color: var(--medium-green);
+            margin-bottom: 0.75rem;
+        }
+
+        /* Impact Section */
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+        }
+
+        .impact-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(26, 86, 50, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .impact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--light-green), var(--medium-green));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .impact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(26, 86, 50, 0.15);
+        }
+
+        .impact-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .impact-number {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--medium-green);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .impact-label {
+            font-size: 0.9rem;
+            color: var(--dark-text);
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            background: var(--off-white);
+            padding: 3rem 1.5rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            height: 250px;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Opportunities Section */
+        #opportunities {
+            background: var(--off-white);
+        }
+
+        .opportunities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .opportunity-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(26, 86, 50, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .opportunity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(26, 86, 50, 0.15);
+        }
+
+        .opportunity-icon {
+            background: linear-gradient(135deg, var(--medium-green), var(--light-green));
+            padding: 2rem;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        .opportunity-content {
+            padding: 1.5rem;
+        }
+
+        .opportunity-content h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.25rem;
+            color: var(--deep-green);
+            margin-bottom: 0.75rem;
+            line-height: 1.2;
+        }
+
+        .opportunity-content p {
+            color: var(--gray-text);
+            margin-bottom: 1.25rem;
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+
+        .opportunity-content .btn {
+            padding: 0.625rem 1.5rem;
+            font-size: 0.875rem;
+            background: var(--medium-green);
+            color: var(--white);
+        }
+
+        .opportunity-content .btn:hover {
+            background: var(--deep-green);
+        }
+
+        /* Farmers Clinic Section */
+        .clinic-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .clinic-image {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(26, 86, 50, 0.15);
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .services-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .services-list li {
+            padding: 0.875rem 0;
+            border-bottom: 1px solid var(--off-white);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--gray-text);
+            font-size: 0.95rem;
+        }
+
+        .services-list li::before {
+            content: '✓';
+            background: var(--light-green);
+            color: var(--white);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+            font-size: 0.8rem;
+        }
+
+        /* Publications Section */
+        #publications {
+            background: var(--off-white);
+        }
+
+        .publications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .publication-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(26, 86, 50, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .publication-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(26, 86, 50, 0.15);
+        }
+
+        .publication-cover {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: linear-gradient(135deg, var(--medium-green), var(--light-green));
+        }
+
+        .publication-info {
+            padding: 1.25rem;
+        }
+
+        .publication-info h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            color: var(--deep-green);
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .publication-info p {
+            color: var(--gray-text);
+            font-size: 0.85rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
+        }
+
+        .publication-price {
+            font-weight: 700;
+            color: var(--medium-green);
+            font-size: 1rem;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            background: var(--light-green);
+            color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .contact-details h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--deep-green);
+            margin-bottom: 0.25rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-details p {
+            color: var(--gray-text);
+            font-size: 0.9rem;
+        }
+
+        .contact-details a {
+            color: var(--medium-green);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-details a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-form {
+            background: var(--off-white);
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dark-text);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.875rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: border-color 0.3s ease;
+            -webkit-appearance: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--medium-green);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--deep-green);
+            color: var(--white);
+            padding: 2rem 1.5rem 1rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-about h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-about p {
+            opacity: 0.9;
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+
+        .footer-links h4 {
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links ul li a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .footer-links ul li a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0.8;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            nav {
+                padding: 1rem 2rem;
+            }
+            
+            .logo-img {
+                height: 60px;
+            }
+            
+            .tagline {
+                font-size: 0.75rem;
+            }
+            
+            .nav-links {
+                display: flex;
+                gap: 2.5rem;
+            }
+            
+            .mobile-menu-btn {
+                display: none;
+            }
+            
+            .hero-content {
+                padding: 4rem 2rem;
+                grid-template-columns: 1fr 1fr;
+                gap: 4rem;
+            }
+            
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+            
+            .hero-text h2 {
+                font-size: 1.75rem;
+            }
+            
+            .hero-text p {
+                font-size: 1.1rem;
+            }
+            
+            .hero-stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
+                margin-top: 3rem;
+            }
+            
+            .stat-number {
+                font-size: 2.25rem;
+            }
+            
+            .stat-label {
+                font-size: 0.9rem;
+            }
+            
+            section {
+                padding: 4rem 2rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 4rem;
+            }
+            
+            .mission-vision {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+                margin-top: 3rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .impact-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
+            }
+            
+            .impact-number {
+                font-size: 2.5rem;
+            }
+            
+            .clinic-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 4rem;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 4rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 2fr 1fr 1fr;
+                gap: 4rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .hero-text h1 {
+                font-size: 4rem;
+            }
+            
+            .hero-text h2 {
+                font-size: 2rem;
+            }
+            
+            .hero-text p {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 3rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .impact-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .opportunities-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .publications-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 767px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            
+            .stat-number {
+                font-size: 1.5rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .impact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .coming-soon-badge {
+                font-size: 0.7rem;
+                padding: 0.3rem 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-text h2 {
+                font-size: 1.25rem;
+            }
+            
+            .section-title {
+                font-size: 1.75rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .opportunities-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .publications-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        /* Prevent horizontal scrolling */
+        body {
+            max-width: 100vw;
+        }
+
+        /* Improve touch targets */
+        button,
+        .btn,
+        a {
+            min-height: 44px;
+            min-width: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            min-height: 44px;
+        }
+
+        /* Image fallback */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="nav-wrapper" id="navbar">
+        <nav>
+            <div class="logo-container">
+                <div>
+                    <img src="1000011138.png" alt="Big2Projects Logo" class="logo-img">
+                    <div class="tagline">Beyond Farming</div>
+                </div>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Big2Projects</a></li>
+                <li><a href="#clinic">Farmer's Clinic Market</a></li>
+                <li><a href="#opportunities">Opportunities</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#publications">Publications & Books</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Farm With Big2Projects</h1>
+                <h2>Taking you from zero to greatness</h2>
+                <p>Ending hunger through climate-smart farming and innovation across Africa. Join the movement to build food security, empower youth, and transform communities.</p>
+                <div class="hero-buttons">
+                    <a href="#opportunities" class="btn btn-primary">Join Big2Projects</a>
+                    <a href="#about" class="btn btn-secondary">Explore Opportunities</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">2100+</span>
+                        <span class="stat-label">Farmers Trained</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">23</span>
+                        <span class="stat-label">Districts Reached</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">155K+</span>
+                        <span class="stat-label">Trees Planted</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-image-container">
+                    <img src="100001217.jpg" alt="Big2Projects Farming" class="hero-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Digital App Coming Soon Banner -->
+    <div class="app-coming-soon">
+        <div class="app-coming-soon-content">
+            <h2>📱 Digital App Coming Soon</h2>
+            <p>Be on the lookout for our revolutionary agricultural platform</p>
+            <img src="Big2 flyer.jpg" alt="Big2Projects App Coming Soon" class="app-flyer">
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="section-header">
+            <h2 class="section-title">About Big2Projects</h2>
+            <p class="section-subtitle">Building a continental agri-movement to be a force in sustainable agricultural production amidst the global climate change crisis</p>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Who We Are</h3>
+                <p>Big2Projects Organization is a for-profit agricultural development enterprise established in 2023, registered in Malawi. We are a leading force in sustainable agriculture, recognized for our commitment to high-quality crop production and dedication to cultivating skilled, resilient farmers who drive positive change within their communities.</p>
+                <p>Our approach goes beyond traditional farming - we empower youth with climate-smart agricultural practices, provide expert consultation services, undertake agricultural commercialization, and encourage natural resource management through environmental transformation programs.</p>
+                <p><strong>Our Motto:</strong> The Road to Million Farmers</p>
+            </div>
+            <div class="about-visual">
+                <div class="mission-vision">
+                    <div class="mission-box">
+                        <h4>🎯 Our Mission</h4>
+                        <p>Building a continental agri-movement to be a force in sustainable agricultural production amidst the global climate change crisis.</p>
+                    </div>
+                    <div class="vision-box">
+                        <h4>👁️ Our Vision</h4>
+                        <p>To be a leading force in sustainable agriculture, recognized for our commitment to high-quality crop production and dedication to cultivating skilled, resilient farmers.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section id="impact">
+        <div class="section-header">
+            <h2 class="section-title">Our Impact</h2>
+            <p class="section-subtitle">Transforming lives and communities through sustainable agriculture</p>
+        </div>
+        <div class="impact-grid">
+            <div class="impact-card">
+                <span class="impact-number">2100+</span>
+                <span class="impact-label">People Trained in Malawi</span>
+            </div>
+            <div class="impact-card">
+                <span class="impact-number">150</span>
+                <span class="impact-label">Medium Farms Opened</span>
+            </div>
+            <div class="impact-card">
+                <span class="impact-number">215</span>
+                <span class="impact-label">Home Gardens Established</span>
+            </div>
+            <div class="impact-card">
+                <span class="impact-number">23</span>
+                <span class="impact-label">Districts Reached</span>
+            </div>
+            <div class="impact-card">
+                <span class="impact-number">155,000+</span>
+                <span class="impact-label">Trees Planted</span>
+            </div>
+            <div class="impact-card">
+                <span class="impact-number">250</span>
+                <span class="impact-label">Avg. Online Class Participation</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery-section">
+        <div class="section-header">
+            <h2 class="section-title">Our Gallery</h2>
+            <p class="section-subtitle">See Big2Projects in action across Malawi</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="IMG-20260126-WA0037.jpg" alt="Big2Projects Activity 1" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="IMG-20260127-WA0028.jpg" alt="Big2Projects Activity 2" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="IMG_20260127-WA0030.jpg" alt="Big2Projects Activity 3" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="IMG-20260127-WA0031.jpg" alt="Big2Projects Activity 4" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="IMG_20260127-WA0033.jpg" alt="Big2Projects Activity 5" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="IMG-20260127-WA0045.jpg" alt="Big2Projects Activity 6" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="IMG_20260127-WA0048.jpg" alt="Big2Projects Activity 7" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="IMG_20260127-WA0051.jpg" alt="Big2Projects Activity 8" class="gallery-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- Farmer's Clinic Section -->
+    <section id="clinic">
+        <div class="section-header">
+            <h2 class="section-title">Farmer's Clinic Market</h2>
+            <p class="section-subtitle">Your trusted partner in agricultural excellence and farmer support</p>
+        </div>
+        <div class="clinic-content">
+            <div>
+                <h3>Comprehensive Agricultural Support Hub</h3>
+                <p>The Farmer's Clinic Market serves as both a physical hub and knowledge center, providing end-to-end support for farmers at every stage of their agricultural journey.</p>
+                <ul class="services-list">
+                    <li>Farmer Advisory & Extension Support</li>
+                    <li>Input Supply and Produce Marketing</li>
+                    <li>Consultancy and Agribusiness Training</li>
+                    <li>Organic Fertilizer Production</li>
+                    <li>Market Linkages for Cooperatives</li>
+                    <li>Climate-Smart Farming Techniques</li>
+                    <li>Crop Production Management</li>
+                    <li>Soil Health Assessment</li>
+                </ul>
+            </div>
+            <div>
+                <img src="1000012127 (1).jpg" alt="Farmer's Clinic Market" class="clinic-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- Opportunities Section -->
+    <section id="opportunities">
+        <div class="section-header">
+            <h2 class="section-title">Opportunities</h2>
+            <p class="section-subtitle">Be on the look - Join us in transforming African agriculture</p>
+        </div>
+        <div class="opportunities-grid">
+            <div class="opportunity-card">
+                <div class="opportunity-icon">🌱</div>
+                <div class="opportunity-content">
+                    <h3>Farming Opportunities</h3>
+                    <p>Access land, resources, and training to start your own sustainable farming venture with expert guidance and market connections.</p>
+                    <a href="#contact" class="btn">Get Involved</a>
+                </div>
+            </div>
+            <div class="opportunity-card">
+                <div class="opportunity-icon">💼</div>
+                <div class="opportunity-content">
+                    <h3>Agribusiness Projects</h3>
+                    <p>Partner with us on value-addition projects, processing initiatives, and commercial agriculture ventures that drive economic growth.</p>
+                    <a href="#contact" class="btn">Get Involved</a>
+                </div>
+            </div>
+            <div class="opportunity-card">
+                <div class="opportunity-icon">🤝</div>
+                <div class="opportunity-content">
+                    <h3>Partnerships</h3>
+                    <p>Collaborate with Big2Projects to scale impact. We welcome NGOs, businesses, and investors committed to sustainable agriculture.</p>
+                    <a href="#contact" class="btn">Get Involved</a>
+                </div>
+            </div>
+            <div class="opportunity-card">
+                <div class="opportunity-icon">📚</div>
+                <div class="opportunity-content">
+                    <h3>Training & Mentorship</h3>
+                    <p>Join our comprehensive training programs covering crop production, soil health, business planning, and environmental conservation.</p>
+                    <a href="#contact" class="btn">Get Involved</a>
+                </div>
+            </div>
+            <div class="opportunity-card">
+                <div class="opportunity-icon">🌳</div>
+                <div class="opportunity-content">
+                    <h3>Environmental Programs</h3>
+                    <p>Participate in our One4Five tree planting campaign and other conservation initiatives that restore and protect our environment.</p>
+                    <a href="#contact" class="btn">Get Involved</a>
+                </div>
+            </div>
+            <div class="opportunity-card">
+                <div class="opportunity-icon">👥</div>
+                <div class="opportunity-content">
+                    <h3>Cooperative Support</h3>
+                    <p>Join or form cooperatives with support for production, organic fertilizers, and direct market linkages through our network.</p>
+                    <a href="#contact" class="btn">Get Involved</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications">
+        <div class="section-header">
+            <h2 class="section-title">Publications & Books</h2>
+            <p class="section-subtitle">Access our library of agricultural knowledge and resources</p>
+        </div>
+        <div class="publications-grid">
+            <div class="publication-card">
+                <img src="1000011211.jpg" alt="Climate-Smart Farming Guide" class="publication-cover">
+                <div class="publication-info">
+                    <h3>Climate-Smart Farming Guide</h3>
+                    <p>Comprehensive guide to adapting farming practices for climate resilience</p>
+                    <span class="publication-price">Contact for pricing</span>
+                </div>
+            </div>
+            <div class="publication-card">
+                <div class="publication-cover"></div>
+                <div class="publication-info">
+                    <h3>Sustainable Agriculture Handbook</h3>
+                    <p>Essential practices for environmentally-friendly crop production</p>
+                    <span class="publication-price">Contact for pricing</span>
+                </div>
+            </div>
+            <div class="publication-card">
+                <div class="publication-cover"></div>
+                <div class="publication-info">
+                    <h3>Youth in Agriculture Manual</h3>
+                    <p>Starting and scaling your agricultural business as a young farmer</p>
+                    <span class="publication-price">Contact for pricing</span>
+                </div>
+            </div>
+            <div class="publication-card">
+                <div class="publication-cover"></div>
+                <div class="publication-info">
+                    <h3>Organic Fertilizer Production</h3>
+                    <p>Step-by-step guide to composting and organic fertilizer creation</p>
+                    <span class="publication-price">Contact for pricing</span>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 2rem;">
+            <p style="font-size: 0.95rem; color: var(--gray-text); line-height: 1.5;">
+                <strong>Payment Options:</strong> Mobile Money (Airtel/TNM) | Bank Transfer<br>
+                Contact us for purchasing details and bulk orders
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="section-header">
+            <h2 class="section-title">Contact Us</h2>
+            <p class="section-subtitle">Get in touch with Big2Projects - We're here to help</p>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <div class="contact-details">
+                        <h3>Phone & WhatsApp</h3>
+                        <p><a href="tel:+265992698447">+265 992 698 447</a></p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <div class="contact-details">
+                        <h3>Email</h3>
+                        <p><a href="mailto:big2projects2000@gmail.com">big2projects2000@gmail.com</a></p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div class="contact-details">
+                        <h3>Location</h3>
+                        <p>Lilongwe, Mitundu<br>Malawi</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">🌐</div>
+                    <div class="contact-details">
+                        <h3>Website</h3>
+                        <p><a href="http://www.thebig2project.com" target="_blank">www.thebig2project.com</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h3 style="font-family: 'Montserrat', sans-serif; color: var(--deep-green); margin-bottom: 1.5rem; font-size: 1.25rem;">Send us a message</h3>
+                <form>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel">
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-about">
+                <h3>Big2Projects Organization</h3>
+                <p>Building a continental agri-movement dedicated to sustainable agricultural production, youth empowerment, and environmental conservation across Africa.</p>
+                <p style="margin-top: 1rem;"><strong>Motto:</strong> The Road to Million Farmers</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#clinic">Farmer's Clinic</a></li>
+                    <li><a href="#opportunities">Opportunities</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#publications">Publications</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><span class="coming-soon-badge" style="font-size: 0.7rem; padding: 0.3rem 0.8rem;">Digital App Coming Soon</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023-2026 Big2Projects Organization. All rights reserved. | Beyond Farming</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.textContent = '☰';
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission (placeholder)
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+
+        // Close mobile menu on window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 767) {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.textContent = '☰';
+            }
+        });
+
+        // Image error handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.addEventListener('error', function() {
+                    console.log('Image failed to load:', this.src);
+                    // You can set a placeholder image here if needed
+                    // this.src = 'placeholder.jpg';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
