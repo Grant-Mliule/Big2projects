@@ -1,0 +1,2852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big2Projects - Beyond Farming</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --deep-green: #1a5632;
+            --medium-green: #2d8a4e;
+            --light-green: #7cb342;
+            --accent-yellow: #ffd600;
+            --white: #ffffff;
+            --off-white: #f8f9fa;
+            --dark-text: #1a1a1a;
+            --gray-text: #666666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* Navigation */
+        .nav-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            box-shadow: 0 2px 20px rgba(26, 86, 50, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-wrapper.scrolled {
+            box-shadow: 0 2px 30px rgba(26, 86, 50, 0.15);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-img {
+            height: 45px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .tagline {
+            font-size: 0.65rem;
+            color: var(--gray-text);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        /* Mobile Navigation */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--deep-green);
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links.active {
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--white);
+            padding: 5rem 2rem 2rem;
+            z-index: 999;
+            gap: 1.5rem;
+            overflow-y: auto;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--medium-green);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--light-green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .coming-soon-badge {
+            background: var(--accent-yellow);
+            color: var(--dark-text);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            animation: pulse 2s infinite;
+            display: inline-block;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            min-height: 85vh;
+            background: linear-gradient(rgba(26, 86, 50, 0.85), rgba(45, 138, 78, 0.9)), url('IMG-20260126-WA0037.jpg') center/cover no-repeat;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(124, 179, 66, 0.2) 0%, transparent 0%),
+                radial-gradient(circle at 80% 80%, rgba(124, 179, 66, 0.15) 0%, transparent 0%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-text h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-text h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent-yellow);
+            margin-bottom: 0.75rem;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        .hero-text p {
+            font-size: 0.95rem;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.6s backwards;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-block;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--accent-yellow);
+            color: var(--dark-text);
+        }
+
+        .btn-primary:hover {
+            background: #ffed4e;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 214, 0, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--deep-green);
+            transform: translateY(-3px);
+        }
+
+        /* Compact Hero Stats for Mobile */
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        .stat-item {
+            text-align: center;
+            animation: fadeInUp 1s ease 0.8s backwards;
+            padding: 0.5rem;
+        }
+
+        .stat-number {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 900;
+            color: var(--accent-yellow);
+            display: block;
+            line-height: 1;
+        }
+
+        .stat-label {
+            color: var(--white);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-top: 0.25rem;
+            display: block;
+            line-height: 1.2;
+            opacity: 0.9;
+        }
+
+        .hero-visual {
+            position: relative;
+            animation: fadeInRight 1s ease 0.5s backwards;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-image-container {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            margin-top: 1rem;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 15px;
+        }
+
+        /* Team Section - Always Visible */
+        #team {
+            background: var(--off-white);
+            padding: 4rem 1rem;
+            display: block;
+        }
+
+        .team-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .team-slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            gap: 2rem;
+            padding: 1rem 0;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            min-width: 280px;
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+            margin: 0 0.5rem;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .team-img-container {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--medium-green), var(--light-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-img-placeholder {
+            font-size: 5rem;
+            color: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .team-info {
+            padding: 1.5rem;
+        }
+
+        .team-info h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.25rem;
+            color: var(--deep-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .team-info .position {
+            color: var(--medium-green);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .team-info .description {
+            color: var(--gray-text);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-info .role {
+            background: var(--light-green);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+
+        .team-slider-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .team-nav-btn {
+            background: var(--medium-green);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .team-nav-btn:hover {
+            background: var(--deep-green);
+            transform: scale(1.1);
+        }
+
+        .team-dots {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .team-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .team-dot.active {
+            background: var(--medium-green);
+            transform: scale(1.2);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 2rem 1rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 900;
+            color: var(--deep-green);
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            font-size: 0.95rem;
+            color: var(--gray-text);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.5;
+            padding: 0 1rem;
+        }
+
+        /* About Section with Video */
+        #about {
+            background: var(--off-white);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            color: var(--deep-green);
+            margin-bottom: 0.75rem;
+            line-height: 1.2;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            color: var(--gray-text);
+            font-size: 0.9rem;
+        }
+
+        /* Video in About Section */
+        .about-video-container {
+            width: 100%;
+            margin: 2rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .about-video {
+            width: 100%;
+            height: auto;
+            display: block;
+            background: #000;
+        }
+
+        .video-controls {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            z-index: 10;
+        }
+
+        .video-mute-btn {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: background 0.3s ease;
+        }
+
+        .video-mute-btn:hover {
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        .mission-vision {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .mission-box, .vision-box {
+            background: var(--white);
+            padding: 1.25rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(26, 86, 50, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .mission-box:hover, .vision-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .mission-box h4, .vision-box h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            color: var(--medium-green);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Farmer's Clinic Section */
+        #clinic {
+            position: relative;
+        }
+
+        .clinic-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .clinic-image {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(26, 86, 50, 0.15);
+            height: auto;
+            max-height: 500px;
+            object-fit: contain;
+            background: #f8f8f8;
+        }
+
+        /* Optimized Services List for Mobile */
+        .services-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .services-list li {
+            padding: 0.5rem 0; 
+            border-bottom: 1px solid var(--off-white);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gray-text);
+            font-size: 0.85rem;
+            line-height: 1.3;
+        }
+
+        .services-list li::before {
+            content: '✓';
+            background: var(--light-green);
+            color: var(--white);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+            font-size: 0.7rem;
+        }
+
+        /* Digital App Coming Soon Section */
+        #digital-app {
+            background: linear-gradient(135deg, var(--medium-green), var(--deep-green));
+            padding: 3rem 1rem;
+            color: white;
+            text-align: center;
+        }
+
+        .digital-app-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .digital-app-content h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .digital-app-content p {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .app-flyer-large {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            margin: 0 auto;
+            display: block;
+        }
+
+        /* Sliding Products Section */
+        .products-slider-section {
+            margin-top: 2rem;
+        }
+
+        .slider-container {
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            background: var(--white);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .slider-header {
+            background: linear-gradient(135deg, var(--medium-green), var(--deep-green));
+            color: white;
+            padding: 0.75rem 1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .slider-wrapper {
+            position: relative;
+            padding: 1rem;
+        }
+
+        .slider-track {
+            display: flex;
+            transition: transform 0.5s ease;
+            gap: 1rem;
+        }
+
+        .slider-item {
+            min-width: 220px;
+            background: var(--off-white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            flex-shrink: 0;
+        }
+
+        .slider-item-img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .slider-item-info {
+            padding: 0.75rem;
+        }
+
+        .slider-item-info h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            color: var(--deep-green);
+            margin-bottom: 0.25rem;
+        }
+
+        .slider-item-info p {
+            color: var(--gray-text);
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .slider-price {
+            font-weight: 700;
+            color: var(--medium-green);
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .slider-btns {
+            display: none;
+        }
+
+        /* Opportunities Section */
+        #opportunities {
+            background: var(--off-white);
+        }
+
+        .opportunities-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .opportunity-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(26, 86, 50, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .opportunity-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(26, 86, 50, 0.15);
+        }
+
+        .opportunity-icon {
+            background: linear-gradient(135deg, var(--medium-green), var(--light-green));
+            padding: 1.25rem;
+            text-align: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .opportunity-content {
+            padding: 1rem;
+        }
+
+        .opportunity-content h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            color: var(--deep-green);
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .opportunity-content p {
+            color: var(--gray-text);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+            font-size: 0.85rem;
+        }
+
+        .opportunity-content .btn {
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            background: var(--medium-green);
+            color: var(--white);
+        }
+
+        .opportunity-content .btn:hover {
+            background: var(--deep-green);
+        }
+
+        /* Resources Section */
+        #resources {
+            background: var(--off-white);
+        }
+
+        .resources-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #e0e0e0;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 0.75rem 1.25rem;
+            background: none;
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--gray-text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            margin: 0 0.25rem;
+        }
+
+        .tab-btn.active {
+            color: var(--deep-green);
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--light-green);
+        }
+
+        .tab-btn:hover {
+            color: var(--medium-green);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Publications Grid - Portrait Layout */
+        .publications-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .publication-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(26, 86, 50, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .publication-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(26, 86, 50, 0.15);
+        }
+
+        .publication-cover {
+            width: 100%;
+            height: 300px;
+            object-fit: contain;
+            background: #f8f8f8;
+            padding: 1rem;
+        }
+
+        .publication-info {
+            padding: 1rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .publication-info h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            color: var(--deep-green);
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+            min-height: 40px;
+        }
+
+        .publication-info p {
+            color: var(--gray-text);
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+            flex-grow: 1;
+        }
+
+        .publication-price {
+            font-weight: 700;
+            color: var(--medium-green);
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 0.75rem;
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            width: 100%;
+            transition: background 0.3s ease;
+            font-size: 0.85rem;
+            min-height: 36px;
+        }
+
+        .whatsapp-btn:hover {
+            background: #1da851;
+        }
+
+        /* Gallery Grid - Horizontal Scroll for Mobile */
+        .gallery-container {
+            overflow-x: auto;
+            margin: 0 -1rem;
+            padding: 0 1rem;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .gallery-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .gallery-grid {
+            display: flex;
+            gap: 0.75rem;
+            padding-bottom: 0.5rem;
+            width: max-content;
+        }
+
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            width: 250px;
+            height: 180px;
+            flex-shrink: 0;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: start;
+            gap: 0.75rem;
+        }
+
+        .contact-icon {
+            background: var(--light-green);
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .contact-details h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--deep-green);
+            margin-bottom: 0.25rem;
+            font-size: 1rem;
+        }
+
+        .contact-details p {
+            color: var(--gray-text);
+            font-size: 0.85rem;
+        }
+
+        .contact-details a {
+            color: var(--medium-green);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-details a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-form {
+            background: var(--off-white);
+            padding: 1.25rem;
+            border-radius: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dark-text);
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            transition: border-color 0.3s ease;
+            -webkit-appearance: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--medium-green);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--deep-green);
+            color: var(--white);
+            padding: 1.5rem 1rem 1rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-about h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-about p {
+            opacity: 0.9;
+            line-height: 1.5;
+            font-size: 0.85rem;
+        }
+
+        .footer-links h4 {
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links ul li a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+            font-size: 0.85rem;
+        }
+
+        .footer-links ul li a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0.8;
+            font-size: 0.8rem;
+        }
+
+        /* Responsive Design - Tablet (768px - 1023px) */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            /* Tablet Hero */
+            .hero {
+                min-height: 75vh;
+            }
+            
+            .hero-content {
+                padding: 2rem;
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.25rem;
+            }
+            
+            .hero-text h2 {
+                font-size: 1.5rem;
+            }
+            
+            .hero-text p {
+                font-size: 1rem;
+            }
+            
+            .hero-stats {
+                gap: 1rem;
+                margin-top: 2rem;
+            }
+            
+            .stat-number {
+                font-size: 1.75rem;
+            }
+            
+            .stat-label {
+                font-size: 0.8rem;
+            }
+            
+            /* Team Section Tablet */
+            .team-card {
+                min-width: 300px;
+            }
+            
+            .team-img-container {
+                height: 220px;
+            }
+            
+            /* Video in About Section */
+            .about-video {
+                height: 400px;
+                object-fit: cover;
+            }
+            
+            /* Tablet Sections */
+            section {
+                padding: 3rem 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1rem;
+            }
+            
+            /* Tablet About */
+            .about-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 2.5rem;
+            }
+            
+            .mission-vision {
+                grid-template-columns: 1fr 1fr;
+                gap: 1.5rem;
+                margin-top: 2rem;
+            }
+            
+            /* Tablet Publications */
+            .publications-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+            
+            .publication-cover {
+                height: 350px;
+            }
+            
+            /* Tablet Gallery */
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+                display: grid;
+                width: 100%;
+                gap: 1rem;
+            }
+            
+            .gallery-container {
+                overflow-x: visible;
+                margin: 0;
+                padding: 0;
+            }
+            
+            .gallery-item {
+                width: 100%;
+                height: 200px;
+            }
+            
+            /* Tablet Opportunities */
+            .opportunities-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.25rem;
+            }
+            
+            /* Tablet Farmer's Clinic */
+            .clinic-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+            
+            .clinic-image {
+                height: auto;
+                max-height: 400px;
+            }
+            
+            .services-list li {
+                font-size: 0.9rem;
+                padding: 0.6rem 0;
+            }
+            
+            /* Digital App Section Tablet */
+            #digital-app {
+                padding: 4rem 2rem;
+            }
+            
+            .digital-app-content h2 {
+                font-size: 2.5rem;
+            }
+            
+            .app-flyer-large {
+                max-width: 700px;
+            }
+            
+            /* Tablet Sliders */
+            .slider-item {
+                min-width: 250px;
+            }
+            
+            .slider-item-img {
+                height: 160px;
+            }
+            
+            /* Tablet Contact */
+            .contact-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+            
+            /* Tablet Footer */
+            .footer-content {
+                grid-template-columns: 2fr 1fr 1fr;
+                gap: 2rem;
+            }
+        }
+
+        /* Responsive Design - Desktop (1024px and above) */
+        @media (min-width: 1024px) {
+            nav {
+                padding: 1rem 2rem;
+            }
+            
+            .logo-img {
+                height: 50px;
+            }
+            
+            .tagline {
+                font-size: 0.75rem;
+            }
+            
+            .nav-links {
+                display: flex;
+                gap: 2.5rem;
+            }
+            
+            .mobile-menu-btn {
+                display: none;
+            }
+            
+            .hero {
+                min-height: 90vh;
+            }
+            
+            .hero-content {
+                padding: 4rem 2rem;
+                grid-template-columns: 1fr 1fr;
+                gap: 4rem;
+            }
+            
+            .hero-text h1 {
+                font-size: 4rem;
+            }
+            
+            .hero-text h2 {
+                font-size: 2rem;
+            }
+            
+            .hero-text p {
+                font-size: 1.2rem;
+                margin-bottom: 2rem;
+            }
+            
+            .hero-stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
+                margin-top: 3rem;
+                padding: 1rem;
+            }
+            
+            .stat-number {
+                font-size: 2.25rem;
+            }
+            
+            .stat-label {
+                font-size: 0.9rem;
+            }
+            
+            .btn {
+                padding: 0.875rem 2rem;
+                font-size: 1rem;
+            }
+            
+            /* Team Section Desktop */
+            .team-card {
+                min-width: 320px;
+            }
+            
+            .team-img-container {
+                height: 240px;
+            }
+            
+            section {
+                padding: 4rem 2rem;
+            }
+            
+            .section-title {
+                font-size: 3rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 4rem;
+            }
+            
+            /* Video in About Section Desktop */
+            .about-video {
+                height: 500px;
+                object-fit: cover;
+            }
+            
+            .mission-vision {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+                margin-top: 3rem;
+            }
+            
+            /* Publications Desktop - Perfect fit for 2 books */
+            .publications-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 3rem;
+                max-width: 1000px;
+                margin: 0 auto;
+            }
+            
+            .publication-card {
+                max-width: 100%;
+            }
+            
+            .publication-cover {
+                height: 400px;
+            }
+            
+            .publication-info h3 {
+                font-size: 1.25rem;
+                min-height: 60px;
+            }
+            
+            .publication-info p {
+                font-size: 0.9rem;
+            }
+            
+            /* Digital App Section Desktop */
+            #digital-app {
+                padding: 6rem 2rem;
+            }
+            
+            .digital-app-content h2 {
+                font-size: 3rem;
+            }
+            
+            .digital-app-content p {
+                font-size: 1.1rem;
+            }
+            
+            .app-flyer-large {
+                max-width: 800px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(4, 1fr);
+                display: grid;
+                width: 100%;
+                gap: 1rem;
+            }
+            
+            .gallery-container {
+                overflow-x: visible;
+                margin: 0;
+                padding: 0;
+            }
+            
+            .gallery-item {
+                width: 100%;
+                height: 250px;
+            }
+            
+            .opportunities-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.5rem;
+            }
+            
+            .opportunity-icon {
+                padding: 2rem;
+                font-size: 2rem;
+            }
+            
+            .opportunity-content {
+                padding: 1.5rem;
+            }
+            
+            .opportunity-content h3 {
+                font-size: 1.25rem;
+            }
+            
+            .opportunity-content p {
+                font-size: 0.9rem;
+            }
+            
+            .clinic-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 4rem;
+            }
+            
+            .clinic-image {
+                height: auto;
+                max-height: 500px;
+            }
+            
+            .services-list li {
+                font-size: 0.95rem;
+                padding: 0.875rem 0;
+                gap: 0.75rem;
+            }
+            
+            .services-list li::before {
+                width: 24px;
+                height: 24px;
+                font-size: 0.8rem;
+            }
+            
+            .slider-item {
+                min-width: 300px;
+            }
+            
+            .slider-item-img {
+                height: 180px;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 4rem;
+            }
+            
+            .contact-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.25rem;
+            }
+            
+            .contact-details h3 {
+                font-size: 1.1rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 2fr 1fr 1fr;
+                gap: 4rem;
+            }
+            
+            /* Remove slider buttons on desktop */
+            .slider-btns {
+                display: none !important;
+            }
+        }
+
+        /* Mobile-specific styles (under 768px) */
+        @media (max-width: 767px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .btn {
+                width: 100%;
+                margin-bottom: 0.5rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .coming-soon-badge {
+                font-size: 0.7rem;
+                padding: 0.3rem 0.8rem;
+            }
+            
+            /* Team Mobile */
+            .team-card {
+                min-width: 280px;
+            }
+            
+            .team-img-container {
+                height: 180px;
+            }
+            
+            /* Video Mobile */
+            .about-video {
+                height: 250px;
+                object-fit: cover;
+            }
+            
+            /* Publications Mobile */
+            .publications-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            
+            .publication-cover {
+                height: 350px;
+            }
+            
+            /* Digital App Mobile */
+            #digital-app {
+                padding: 2rem 1rem;
+            }
+            
+            .digital-app-content h2 {
+                font-size: 1.75rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.5rem;
+                padding: 0.5rem;
+            }
+            
+            .stat-item {
+                padding: 0.25rem;
+            }
+            
+            .stat-number {
+                font-size: 1.1rem;
+            }
+            
+            .stat-label {
+                font-size: 0.65rem;
+            }
+            
+            .team-card {
+                min-width: 260px;
+            }
+            
+            .team-img-container {
+                height: 160px;
+            }
+            
+            .about-video {
+                height: 200px;
+            }
+            
+            .clinic-image {
+                max-height: 300px;
+            }
+            
+            .opportunities-grid {
+                gap: 0.75rem;
+            }
+            
+            .opportunity-icon {
+                padding: 1rem;
+                font-size: 1.25rem;
+            }
+            
+            .opportunity-content {
+                padding: 0.75rem;
+            }
+            
+            .gallery-item {
+                width: 220px;
+                height: 160px;
+            }
+            
+            .publication-cover {
+                height: 300px;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        /* Prevent horizontal scrolling */
+        body {
+            max-width: 100vw;
+        }
+
+        /* Improve touch targets */
+        button,
+        .btn,
+        a {
+            min-height: 44px;
+            min-width: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            min-height: 44px;
+        }
+
+        /* Image fallback */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* Custom white icons for opportunities */
+        .opportunity-icon i {
+            filter: brightness(0) invert(1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="nav-wrapper" id="navbar">
+        <nav>
+            <div class="logo-container">
+                <div>
+                    <img src="Logo B2P.png" alt="Big2Projects Logo" class="logo-img">
+                </div>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#clinic">Farmer's Clinic Market</a></li>
+                <li><a href="#resources">Resources</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Farm With Big2Projects</h1>
+                <h2>Taking you from zero to greatness</h2>
+                <p>Ending hunger through climate-smart farming and innovation across Africa. Join the movement to build food security, empower youth, and transform communities.</p>
+                <div class="hero-buttons">
+                    <a href="#about" class="btn btn-primary">Join Big2Projects</a>
+                    <a href="#opportunities" class="btn btn-secondary">Explore Opportunities</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">2100+</span>
+                        <span class="stat-label">Farmers Trained</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">23</span>
+                        <span class="stat-label">Districts Reached</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">155K+</span>
+                        <span class="stat-label">Trees Planted</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-image-container">
+                    <img src="1000011211.jpg" alt="Big2Projects Farming" class="hero-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section with Video -->
+    <section id="about">
+        <div class="section-header">
+            <h2 class="section-title">About Big2Projects</h2>
+            <p class="section-subtitle">Building a continental agri-movement to be a force in sustainable agricultural production amidst the global climate change crisis</p>
+        </div>
+        
+        <!-- Video about Big2Projects -->
+        <div class="about-video-container">
+            <video class="about-video" autoplay muted loop playsinline id="aboutVideo">
+                <source src="Video1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="video-controls">
+                <button class="video-mute-btn" id="videoMuteBtn">
+                    <i class="fas fa-volume-mute"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Who We Are</h3>
+                <p>Big2Projects Organization is a for-profit agricultural development enterprise established in 2023, registered in Malawi. We are a leading force in sustainable agriculture, recognized for our commitment to high-quality crop production and dedication to cultivating skilled, resilient farmers who drive positive change within their communities.</p>
+                <p>Our approach goes beyond traditional farming - we empower youth with climate-smart agricultural practices, provide expert consultation services, undertake agricultural commercialization, and encourage natural resource management through environmental transformation programs.</p>
+                <p><strong>Our Motto:</strong> The Road to Million Farmers</p>
+            </div>
+            <div class="about-visual">
+                <div class="mission-vision">
+                    <div class="mission-box">
+                        <h4>🎯 Our Mission</h4>
+                        <p>Building a continental agri-movement to be a force in sustainable agricultural production amidst the global climate change crisis.</p>
+                    </div>
+                    <div class="vision-box">
+                        <h4>👁️ Our Vision</h4>
+                        <p>To be a leading force in sustainable agriculture, recognized for our commitment to high-quality crop production and dedication to cultivating skilled, resilient farmers.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section - Always Visible with Auto-sliding -->
+    <section id="team">
+        <div class="section-header">
+            <h2 class="section-title">Our Team</h2>
+            <p class="section-subtitle">Meet the dedicated professionals driving sustainable agriculture forward</p>
+        </div>
+        <div class="team-container">
+            <div class="team-slider" id="teamSlider">
+                <!-- Founder -->
+                <div class="team-card">
+                    <div class="team-img-container">
+                        <div class="team-img-placeholder">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3>BLESSINGS MILELEMBA</h3>
+                        <p class="position">Founder / Chief Executive Officer</p>
+                        <p class="description">Agronomist, Consultant, Grepeneur, Farmer with extensive experience in sustainable agriculture and youth empowerment.</p>
+                        <p class="description">MAX THABISO Ambassador of Global Youth Climate Network under World Bank - Youth Opportunities Ambassador.</p>
+                        <span class="role">Leadership</span>
+                    </div>
+                </div>
+                
+                <!-- Board Chair -->
+                <div class="team-card">
+                    <div class="team-img-container">
+                        <div class="team-img-placeholder">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3>PETER MWANGA</h3>
+                        <p class="position">Board Chair</p>
+                        <p class="description">Journalist and TV Presenter at Hope Channel Malawi. Brings extensive media and communication expertise to the organization.</p>
+                        <span class="role">Governance</span>
+                    </div>
+                </div>
+                
+                <!-- Senior PR Officer -->
+                <div class="team-card">
+                    <div class="team-img-container">
+                        <div class="team-img-placeholder">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3>ALICE BANDA MOYO</h3>
+                        <p class="position">Senior Public Relations Officer</p>
+                        <p class="description">Senior Public Relations Officer at Malawi Broadcasting Corporation. Expert in public relations and strategic communications.</p>
+                        <span class="role">Communications</span>
+                    </div>
+                </div>
+                
+                <!-- Assistant Internal Auditor -->
+                <div class="team-card">
+                    <div class="team-img-container">
+                        <div class="team-img-placeholder">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3>CHISOMO MULINGA</h3>
+                        <p class="position">Assistant Internal Auditor</p>
+                        <p class="description">Assistant Internal Auditor at University of Malawi (CHANCO). Ensures financial integrity and compliance across operations.</p>
+                        <span class="role">Finance & Audit</span>
+                    </div>
+                </div>
+                
+                <!-- Program Associate -->
+                <div class="team-card">
+                    <div class="team-img-container">
+                        <div class="team-img-placeholder">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3>DALITSO LAVIWA</h3>
+                        <p class="position">Program Associate</p>
+                        <p class="description">Program Associate for Sustainable Health Financing with MA in Economics. Specializes in economic planning and sustainable development.</p>
+                        <span class="role">Program Management</span>
+                    </div>
+                </div>
+                
+                <!-- Medicine Analyst -->
+                <div class="team-card">
+                    <div class="team-img-container">
+                        <div class="team-img-placeholder">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3>MOSES SONDASHI</h3>
+                        <p class="position">Medicine Analyst & Coordinator</p>
+                        <p class="description">Medicine Analyst and Preventive Maintenance Coordinator. Brings technical expertise and quality assurance to agricultural inputs.</p>
+                        <span class="role">Quality Control</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="team-slider-nav">
+                <button class="team-nav-btn" id="teamPrevBtn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                
+                <div class="team-dots" id="teamDots">
+                    <!-- Dots will be generated by JavaScript -->
+                </div>
+                
+                <button class="team-nav-btn" id="teamNextBtn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Farmer's Clinic Section -->
+    <section id="clinic">
+        <div class="section-header">
+            <h2 class="section-title">Farmer's Clinic Market</h2>
+            <p class="section-subtitle">Your trusted partner in agricultural excellence and farmer support</p>
+        </div>
+        
+        <div class="clinic-content">
+            <div>
+                <h3>Comprehensive Agricultural Support Hub</h3>
+                <p>The Farmer's Clinic Market serves as both a physical hub and knowledge center, providing end-to-end support for farmers at every stage of their agricultural journey.</p>
+                <ul class="services-list">
+                    <li>Farmer Advisory & Extension Support</li>
+                    <li>Input Supply and Produce Marketing</li>
+                    <li>Consultancy and Agribusiness Training</li>
+                    <li>Organic Fertilizer Production</li>
+                    <li>Market Linkages for Cooperatives</li>
+                    <li>Climate-Smart Farming Techniques</li>
+                    <li>Crop Production Management</li>
+                    <li>Soil Health Assessment</li>
+                </ul>
+            </div>
+            <div>
+                <img src="1000011217 (1).jpg" alt="Farmer's Clinic Market - Full Image" class="clinic-image">
+            </div>
+        </div>
+
+        <!-- Agricultural Products Slider -->
+        <div class="products-slider-section">
+            <div class="slider-container">
+                <div class="slider-header">🌱 Fresh Farm Products</div>
+                <div class="slider-wrapper">
+                    <div class="slider-btns">
+                        <button class="slider-btn prev" onclick="slideProducts(-1)">❮</button>
+                        <button class="slider-btn next" onclick="slideProducts(1)">❯</button>
+                    </div>
+                    <div class="slider-track" id="productsSlider">
+                        <div class="slider-item">
+                            <img src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Fresh Tomatoes" class="slider-item-img">
+                            <div class="slider-item-info">
+                                <h4>Fresh Tomatoes</h4>
+                                <p>High-quality, organically grown tomatoes</p>
+                                <span class="slider-price">MK 1,500/kg</span>
+                                <button class="whatsapp-btn" onclick="openWhatsApp('I would like to purchase Fresh Tomatoes')">
+                                    <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                                </button>
+                            </div>
+                        </div>
+                        <div class="slider-item">
+                            <img src="https://th.bing.com/th/id/OIP.S1JJsFKgOStYmBrMdCOnGwHaFG?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Fresh Onions" class="slider-item-img">
+                            <div class="slider-item-info">
+                                <h4>Fresh Onions</h4>
+                                <p>Premium quality onions, perfect for cooking</p>
+                                <span class="slider-price">MK 2,000/kg</span>
+                                <button class="whatsapp-btn" onclick="openWhatsApp('I would like to purchase Fresh Onions')">
+                                    <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                                </button>
+                            </div>
+                        </div>
+                        <div class="slider-item">
+                            <img src="IMG-20260127-WA0044.jpg" alt="Fresh Cabbage" class="slider-item-img">
+                            <div class="slider-item-info">
+                                <h4>Fresh Cabbage</h4>
+                                <p>Organic cabbage, crisp and nutritious</p>
+                                <span class="slider-price">MK 1000/head</span>
+                                <button class="whatsapp-btn" onclick="openWhatsApp('I would like to purchase Fresh Cabbage')">
+                                    <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                                </button>
+                            </div>
+                        </div>
+                        <div class="slider-item">
+                            <img src="https://epicureanearth.com/wp-content/uploads/2024/09/all-about-the-carrot-scaled.jpg" alt="Fresh Carrots" class="slider-item-img">
+                            <div class="slider-item-info">
+                                <h4>Fresh Carrots</h4>
+                                <p>Sweet, crunchy carrots</p>
+                                <span class="slider-price">MK 2,000/kg</span>
+                                <button class="whatsapp-btn" onclick="openWhatsApp('I would like to purchase Fresh Carrots')">
+                                    <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                                </button>
+                            </div>
+                        </div>
+                        <div class="slider-item">
+                            <img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Fresh Potatoes" class="slider-item-img">
+                            <div class="slider-item-info">
+                                <h4>Fresh Potatoes</h4>
+                                <p>Quality potatoes for all your cooking needs</p>
+                                <span class="slider-price">MK 2,000/kg</span>
+                                <button class="whatsapp-btn" onclick="openWhatsApp('I would like to purchase Fresh Potatoes')">
+                                    <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Farm Chemicals Slider -->
+            <div class="slider-container" style="margin-top: 1.5rem;">
+                <div class="slider-header">🧪 Farm Chemicals & Pesticides</div>
+                <div class="slider-wrapper">
+                    <div class="slider-btns">
+                        <button class="slider-btn prev" onclick="slideChemicals(-1)">❮</button>
+                        <button class="slider-btn next" onclick="slideChemicals(1)">❯</button>
+                    </div>
+                    <div class="slider-track" id="chemicalsSlider">
+                        <div class="slider-item">
+                            <img src="IMG-20260127-WA0030.jpg" alt="Organic Fertilizer" class="slider-item-img">
+                            <div class="slider-item-info">
+                                <h4>Cypermethrin</h4>
+                                <p>Insecticide</p>
+                                <button class="whatsapp-btn" onclick="openWhatsApp('I would like to purchase Cypermethrin Insecticide')">
+                                    <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                                </button>
+                            </div>
+                        </div>
+                        <div class="slider-item">
+                            <img src="IMG-20260127-WA0033.jpg" alt="Organic Pesticide" class="slider-item-img">
+                            <div class="slider-item-info">
+                                <h4>Dithane</h4>
+                                <p>Fungicide</p>
+                                <button class="whatsapp-btn" onclick="openWhatsApp('I would like to purchase Dithane Fungicide')">
+                                    <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                                </button>
+                            </div>
+                        </div>
+                        <div class="slider-item">
+                            <img src="IMG-20260127-WA0031.jpg" alt="Selective Herbicide" class="slider-item-img">
+                            <div class="slider-item-info">
+                                <h4>Emaben</h4>
+                                <p>Insecticide</p>
+                                <button class="whatsapp-btn" onclick="openWhatsApp('I would like to purchase Emaben Insecticide')">
+                                    <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                                </button>
+                            </div>
+                        </div>
+                        <div class="slider-item">
+                            <img src="IMG-20260127-WA0029.jpg" alt="Fungicide" class="slider-item-img">
+                            <div class="slider-item-info">
+                                <h4>Abamectin</h4>
+                                <p>Insecticide</p>
+                                <button class="whatsapp-btn" onclick="openWhatsApp('I would like to purchase Abamectin Insecticide')">
+                                    <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Opportunities Section -->
+    <section id="opportunities">
+        <div class="section-header">
+            <h2 class="section-title">Opportunities</h2>
+            <p class="section-subtitle">Be on the look - Join us in transforming African agriculture</p>
+        </div>
+        <div class="opportunities-grid">
+            <div class="opportunity-card">
+                <div class="opportunity-icon"><i class="fas fa-seedling"></i></div>
+                <div class="opportunity-content">
+                    <h3>Farming Opportunities</h3>
+                    <p>Access land, resources, and training to start your own sustainable farming venture with expert guidance and market connections.</p>
+                    <a href="#contact" class="btn">Get Involved</a>
+                </div>
+            </div>
+            <div class="opportunity-card">
+                <div class="opportunity-icon"><i class="fas fa-briefcase"></i></div>
+                <div class="opportunity-content">
+                    <h3>Agribusiness Projects</h3>
+                    <p>Partner with us on value-addition projects, processing initiatives, and commercial agriculture ventures that drive economic growth.</p>
+                    <a href="#contact" class="btn">Get Involved</a>
+                </div>
+            </div>
+            <div class="opportunity-card">
+                <div class="opportunity-icon"><i class="fas fa-handshake"></i></div>
+                <div class="opportunity-content">
+                    <h3>Partnerships</h3>
+                    <p>Collaborate with Big2Projects to scale impact. We welcome NGOs, businesses, and investors committed to sustainable agriculture.</p>
+                    <a href="#contact" class="btn">Get Involved</a>
+                </div>
+            </div>
+            <div class="opportunity-card">
+                <div class="opportunity-icon"><i class="fas fa-graduation-cap"></i></div>
+                <div class="opportunity-content">
+                    <h3>Training & Mentorship</h3>
+                    <p>Join our comprehensive training programs covering crop production, soil health, business planning, and environmental conservation.</p>
+                    <a href="#contact" class="btn">Get Involved</a>
+                </div>
+            </div>
+            <div class="opportunity-card">
+                <div class="opportunity-icon"><i class="fas fa-tree"></i></div>
+                <div class="opportunity-content">
+                    <h3>Environmental Programs</h3>
+                    <p>Participate in our One4Five tree planting campaign and other conservation initiatives that restore and protect our environment.</p>
+                    <a href="#contact" class="btn">Get Involved</a>
+                </div>
+            </div>
+            <div class="opportunity-card">
+                <div class="opportunity-icon"><i class="fas fa-users"></i></div>
+                <div class="opportunity-content">
+                    <h3>Cooperative Support</h3>
+                    <p>Join or form cooperatives with support for production, organic fertilizers, and direct market linkages through our network.</p>
+                    <a href="#contact" class="btn">Get Involved</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section (Publications & Gallery) -->
+    <section id="resources">
+        <div class="section-header">
+            <h2 class="section-title">Resources</h2>
+            <p class="section-subtitle">Access our publications, books, and photo gallery</p>
+        </div>
+        
+        <div class="resources-tabs">
+            <button class="tab-btn active" data-tab="publications-tab"><i class="fas fa-book"></i> Publications</button>
+            <button class="tab-btn" data-tab="gallery-tab"><i class="fas fa-images"></i> Gallery</button>
+        </div>
+
+        <!-- Publications Tab -->
+        <div class="tab-content active" id="publications-tab">
+            <div class="publications-grid">
+                <div class="publication-card">
+                    <img src="Agricultu_20260131_011200_1.png" class="publication-cover" alt="Agriculture Hundred Years from Now">
+                    <div class="publication-info">
+                        <h3>Agriculture Hundred Years from Now</h3>
+                        <p>Effective and Responsive Food production amidst the global economic and climate change</p>
+                        <span class="publication-price">MK 20,000</span>
+                        <button class="whatsapp-btn" onclick="openWhatsApp('I would like to purchase the book titled - Agriculture Hundred Years from Now')">
+                            <i class="fab fa-whatsapp"></i> Purchase via WhatsApp
+                        </button>
+                    </div>
+                </div>
+                <div class="publication-card">
+                    <img src="https://imgv2-1-f.scribdassets.com/img/document/683670253/original/19797c0055/1710845373?v=1" alt="Sustainable Agriculture Handbook" class="publication-cover">
+                    <div class="publication-info">
+                        <h3>Guide to Agricultural Production</h3>
+                        <p>Official national reference for crop and livestock management, natural resources conservation and extension services</p>
+                        <span class="publication-price">Free</span>
+                        <button class="whatsapp-btn" onclick="openWhatsApp('I would like to purchase the Sustainable Agriculture Handbook')">
+                            <i class="fab fa-whatsapp"></i> Purchase via WhatsApp
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 1.5rem;">
+                <p style="font-size: 0.9rem; color: var(--gray-text); line-height: 1.5;">
+                    <strong>Payment Options:</strong> Mobile Money (Airtel/TNM) | Bank Transfer<br>
+                    Contact us for purchasing details and bulk orders
+                </p>
+            </div>
+        </div>
+
+        <!-- Gallery Tab -->
+        <div class="tab-content" id="gallery-tab">
+            <div class="gallery-container">
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="IMG-20260127-WA0054.jpg" alt="Big2Projects Activity 1" class="gallery-img">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="IMG-20260127-WA0057.jpg" alt="Big2Projects Activity 2" class="gallery-img">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="IMG-20260127-WA0063.jpg" alt="Big2Projects Activity 3" class="gallery-img">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="IMG-20260127-WA0064.jpg" alt="Big2Projects Activity 4" class="gallery-img">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="IMG-20260127-WA0037.jpg" alt="Big2Projects Activity 5" class="gallery-img">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="IMG-20260127-WA0045.jpg" alt="Big2Projects Activity 6" class="gallery-img">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="IMG-20260127-WA0058.jpg" alt="Big2Projects Activity 7" class="gallery-img">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="IMG-20260127-WA0048.jpg" alt="Big2Projects Activity 8" class="gallery-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Digital App Coming Soon Section -->
+    <section id="digital-app">
+        <div class="digital-app-content">
+            <h2>📱 Digital App Coming Soon</h2>
+            <p>Be on the lookout for our revolutionary agricultural platform that will transform how farmers access information, markets, and resources.</p>
+            <img src="Big2 flyer.jpg" alt="Big2Projects App Coming Soon" class="app-flyer-large">
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="section-header">
+            <h2 class="section-title">Contact Us</h2>
+            <p class="section-subtitle">Get in touch with Big2Projects - We're here to help</p>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <div class="contact-details">
+                        <h3>Phone & WhatsApp</h3>
+                        <p><a href="tel:+265992698447">+265 992 698 447</a></p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <div class="contact-details">
+                        <h3>Email</h3>
+                        <p><a href="mailto:big2projects2000@gmail.com">big2projects2000@gmail.com</a></p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div class="contact-details">
+                        <h3>Location</h3>
+                        <p>Lilongwe, Mitundu<br>Malawi</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">🌐</div>
+                    <div class="contact-details">
+                        <h3>Website</h3>
+                        <p><a href="http://www.thebig2project.com" target="_blank">www.thebig2project.com</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h3 style="font-family: 'Montserrat', sans-serif; color: var(--deep-green); margin-bottom: 1.5rem; font-size: 1.25rem;">Send us a message</h3>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel">
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-about">
+                <h3>Big2Projects Organization</h3>
+                <p>Building a continental agri-movement dedicated to sustainable agricultural production, youth empowerment, and environmental conservation across Africa.</p>
+                <p style="margin-top: 1rem;"><strong>Motto:</strong> The Road to Million Farmers</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#clinic">Farmer's Clinic</a></li>
+                    <li><a href="#opportunities">Opportunities</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#resources" onclick="showGalleryTab()">Gallery</a></li>
+                    <li><a href="#resources" onclick="showPublicationsTab()">Publications</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><span class="coming-soon-badge" style="font-size: 0.7rem; padding: 0.3rem 0.8rem;">Digital App Coming Soon</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023-2026 Big2Projects Organization. All rights reserved. | Beyond Farming</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.textContent = '☰';
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission (placeholder)
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+
+        // Close mobile menu on window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 767) {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.textContent = '☰';
+            }
+        });
+
+        // WhatsApp function
+        function openWhatsApp(productMessage) {
+            const phoneNumber = '+265992698447';
+            const message = `Hello Big2Projects! ${productMessage}. Please provide me with more information about pricing and availability.`;
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+        }
+
+        // Tab functionality for Resources section
+        document.querySelectorAll('.tab-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons and contents
+                document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Show corresponding content
+                const tabId = this.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Functions to show specific tabs from footer links
+        function showGalleryTab() {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            document.querySelector('[data-tab="gallery-tab"]').classList.add('active');
+            document.getElementById('gallery-tab').classList.add('active');
+        }
+
+        function showPublicationsTab() {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            document.querySelector('[data-tab="publications-tab"]').classList.add('active');
+            document.getElementById('publications-tab').classList.add('active');
+        }
+
+        // Video mute/unmute functionality
+        const aboutVideo = document.getElementById('aboutVideo');
+        const videoMuteBtn = document.getElementById('videoMuteBtn');
+        
+        videoMuteBtn.addEventListener('click', function() {
+            if (aboutVideo.muted) {
+                aboutVideo.muted = false;
+                this.innerHTML = '<i class="fas fa-volume-up"></i>';
+            } else {
+                aboutVideo.muted = true;
+                this.innerHTML = '<i class="fas fa-volume-mute"></i>';
+            }
+        });
+
+        // Team Slider Functionality
+        let teamCurrentIndex = 0;
+        let teamAutoSlideInterval;
+        const teamSlider = document.getElementById('teamSlider');
+        const teamCards = teamSlider.querySelectorAll('.team-card');
+        const teamPrevBtn = document.getElementById('teamPrevBtn');
+        const teamNextBtn = document.getElementById('teamNextBtn');
+        const teamDotsContainer = document.getElementById('teamDots');
+        let cardsPerView = 1;
+
+        function initializeTeamSlider() {
+            // Determine how many cards to show based on screen width
+            if (window.innerWidth >= 1024) {
+                cardsPerView = 3;
+            } else if (window.innerWidth >= 768) {
+                cardsPerView = 2;
+            } else {
+                cardsPerView = 1;
+            }
+            
+            // Create dots for navigation
+            createDots();
+            
+            // Set initial position
+            updateTeamSlider();
+            
+            // Start auto-slide
+            startTeamAutoSlide();
+        }
+
+        function createDots() {
+            teamDotsContainer.innerHTML = '';
+            const totalDots = Math.ceil(teamCards.length / cardsPerView);
+            
+            for (let i = 0; i < totalDots; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'team-dot';
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToTeamSlide(i));
+                teamDotsContainer.appendChild(dot);
+            }
+        }
+
+        function updateTeamSlider() {
+            const cardWidth = teamCards[0].offsetWidth + 32; // card width + gap
+            const translateX = -(teamCurrentIndex * cardWidth * cardsPerView);
+            teamSlider.style.transform = `translateX(${translateX}px)`;
+            
+            // Update active dot
+            const dots = teamDotsContainer.querySelectorAll('.team-dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === Math.floor(teamCurrentIndex / cardsPerView));
+            });
+        }
+
+        function goToTeamSlide(index) {
+            const maxIndex = Math.ceil(teamCards.length / cardsPerView) - 1;
+            teamCurrentIndex = Math.min(Math.max(index * cardsPerView, 0), maxIndex * cardsPerView);
+            updateTeamSlider();
+            resetTeamAutoSlide();
+        }
+
+        function slideTeam(direction) {
+            const maxIndex = Math.ceil(teamCards.length / cardsPerView) - 1;
+            const currentDotIndex = Math.floor(teamCurrentIndex / cardsPerView);
+            
+            let newDotIndex = currentDotIndex + direction;
+            
+            if (newDotIndex < 0) {
+                newDotIndex = maxIndex;
+            } else if (newDotIndex > maxIndex) {
+                newDotIndex = 0;
+            }
+            
+            goToTeamSlide(newDotIndex);
+        }
+
+        function startTeamAutoSlide() {
+            teamAutoSlideInterval = setInterval(() => {
+                slideTeam(1);
+            }, 4000); // Auto-slide every 4 seconds
+        }
+
+        function resetTeamAutoSlide() {
+            clearInterval(teamAutoSlideInterval);
+            startTeamAutoSlide();
+        }
+
+        // Event listeners for team navigation
+        teamPrevBtn.addEventListener('click', () => {
+            slideTeam(-1);
+            resetTeamAutoSlide();
+        });
+
+        teamNextBtn.addEventListener('click', () => {
+            slideTeam(1);
+            resetTeamAutoSlide();
+        });
+
+        // Pause auto-slide on hover
+        teamSlider.addEventListener('mouseenter', () => {
+            clearInterval(teamAutoSlideInterval);
+        });
+
+        teamSlider.addEventListener('mouseleave', () => {
+            startTeamAutoSlide();
+        });
+
+        // Slider functionality for products and chemicals
+        let productsCurrentIndex = 0;
+        let chemicalsCurrentIndex = 0;
+        let productsAutoSlideInterval;
+        let chemicalsAutoSlideInterval;
+
+        function initializeSliders() {
+            const productsSlider = document.getElementById('productsSlider');
+            const chemicalsSlider = document.getElementById('chemicalsSlider');
+            
+            // Set initial positions
+            updateSliderPosition(productsSlider, productsCurrentIndex, 'products');
+            updateSliderPosition(chemicalsSlider, chemicalsCurrentIndex, 'chemicals');
+            
+            // Start auto-slide
+            startAutoSlide();
+        }
+
+        function slideProducts(direction) {
+            const slider = document.getElementById('productsSlider');
+            const items = slider.children.length;
+            const visibleItems = getVisibleItems('products');
+            
+            productsCurrentIndex += direction;
+            
+            // Boundary checks
+            if (productsCurrentIndex < 0) {
+                productsCurrentIndex = items - visibleItems;
+            } else if (productsCurrentIndex > items - visibleItems) {
+                productsCurrentIndex = 0;
+            }
+            
+            updateSliderPosition(slider, productsCurrentIndex, 'products');
+            
+            // Reset auto-slide timer
+            resetAutoSlide('products');
+        }
+
+        function slideChemicals(direction) {
+            const slider = document.getElementById('chemicalsSlider');
+            const items = slider.children.length;
+            const visibleItems = getVisibleItems('chemicals');
+            
+            chemicalsCurrentIndex += direction;
+            
+            // Boundary checks
+            if (chemicalsCurrentIndex < 0) {
+                chemicalsCurrentIndex = items - visibleItems;
+            } else if (chemicalsCurrentIndex > items - visibleItems) {
+                chemicalsCurrentIndex = 0;
+            }
+            
+            updateSliderPosition(slider, chemicalsCurrentIndex, 'chemicals');
+            
+            // Reset auto-slide timer
+            resetAutoSlide('chemicals');
+        }
+
+        function getVisibleItems(sliderType) {
+            const slider = sliderType === 'products' ? 
+                document.getElementById('productsSlider') : 
+                document.getElementById('chemicalsSlider');
+            
+            const parentWidth = slider.parentElement.offsetWidth;
+            const itemWidth = window.innerWidth < 768 ? 220 : 250;
+            
+            return Math.floor(parentWidth / itemWidth);
+        }
+
+        function updateSliderPosition(slider, index, sliderType) {
+            const itemWidth = window.innerWidth < 768 ? 220 : 250;
+            const gap = window.innerWidth < 768 ? 16 : 24;
+            const translateX = -(index * (itemWidth + gap));
+            slider.style.transform = `translateX(${translateX}px)`;
+        }
+
+        function startAutoSlide() {
+            // Products auto-slide every 5 seconds
+            productsAutoSlideInterval = setInterval(() => {
+                slideProducts(1);
+            }, 5000);
+            
+            // Chemicals auto-slide every 6 seconds (different timing)
+            chemicalsAutoSlideInterval = setInterval(() => {
+                slideChemicals(1);
+            }, 6000);
+        }
+
+        function resetAutoSlide(sliderType) {
+            if (sliderType === 'products') {
+                clearInterval(productsAutoSlideInterval);
+                productsAutoSlideInterval = setInterval(() => {
+                    slideProducts(1);
+                }, 5000);
+            } else {
+                clearInterval(chemicalsAutoSlideInterval);
+                chemicalsAutoSlideInterval = setInterval(() => {
+                    slideChemicals(1);
+                }, 6000);
+            }
+        }
+
+        // Touch/swipe functionality for mobile
+        let startX = 0;
+        let startY = 0;
+        let isSwiping = false;
+
+        document.querySelectorAll('.slider-track').forEach(track => {
+            track.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                isSwiping = true;
+            });
+
+            track.addEventListener('touchmove', (e) => {
+                if (!isSwiping) return;
+                
+                const currentX = e.touches[0].clientX;
+                const currentY = e.touches[0].clientY;
+                
+                // Check if horizontal swipe (not vertical scroll)
+                if (Math.abs(currentX - startX) > Math.abs(currentY - startY)) {
+                    e.preventDefault();
+                }
+            });
+
+            track.addEventListener('touchend', (e) => {
+                if (!isSwiping) return;
+                
+                const endX = e.changedTouches[0].clientX;
+                const endY = e.changedTouches[0].clientY;
+                
+                // Only process horizontal swipes
+                if (Math.abs(endX - startX) > Math.abs(endY - startY)) {
+                    handleSwipe(startX, endX, track.parentElement.parentElement.id);
+                }
+                
+                isSwiping = false;
+            });
+        });
+
+        function handleSwipe(startX, endX, sliderContainerId) {
+            const swipeThreshold = 50;
+            
+            if (startX - endX > swipeThreshold) {
+                // Swipe left - next slide
+                if (sliderContainerId.includes('products')) {
+                    slideProducts(1);
+                } else {
+                    slideChemicals(1);
+                }
+            } else if (endX - startX > swipeThreshold) {
+                // Swipe right - previous slide
+                if (sliderContainerId.includes('products')) {
+                    slideProducts(-1);
+                } else {
+                    slideChemicals(-1);
+                }
+            }
+        }
+
+        // Mouse drag functionality for desktop
+        let isDragging = false;
+        let startDragX = 0;
+        let currentDragX = 0;
+
+        document.querySelectorAll('.slider-track').forEach(track => {
+            track.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                startDragX = e.clientX;
+                currentDragX = startDragX;
+                track.style.cursor = 'grabbing';
+                e.preventDefault();
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                
+                currentDragX = e.clientX;
+                
+                // Calculate drag distance
+                const dragDistance = currentDragX - startDragX;
+                
+                // Apply temporary transform during drag
+                const currentTransform = track.style.transform || 'translateX(0px)';
+                const currentTranslate = parseInt(currentTransform.match(/translateX\((-?\d+)px\)/)[1]) || 0;
+                track.style.transform = `translateX(${currentTranslate + dragDistance}px)`;
+                
+                startDragX = currentDragX;
+            });
+
+            document.addEventListener('mouseup', () => {
+                if (!isDragging) return;
+                
+                isDragging = false;
+                track.style.cursor = 'grab';
+                
+                // Determine if it was a significant drag
+                const dragDistance = currentDragX - startDragX;
+                const sliderContainerId = track.parentElement.parentElement.id;
+                
+                if (Math.abs(dragDistance) > 50) {
+                    if (dragDistance > 0) {
+                        // Drag right - previous slide
+                        if (sliderContainerId.includes('products')) {
+                            slideProducts(-1);
+                        } else {
+                            slideChemicals(-1);
+                        }
+                    } else {
+                        // Drag left - next slide
+                        if (sliderContainerId.includes('products')) {
+                            slideProducts(1);
+                        } else {
+                            slideChemicals(1);
+                        }
+                    }
+                } else {
+                    // Not significant drag, return to current position
+                    if (sliderContainerId.includes('products')) {
+                        updateSliderPosition(track, productsCurrentIndex, 'products');
+                    } else {
+                        updateSliderPosition(track, chemicalsCurrentIndex, 'chemicals');
+                    }
+                }
+            });
+        });
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeTeamSlider();
+            initializeSliders();
+            
+            // Image error handling
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.addEventListener('error', function() {
+                    console.log('Image failed to load:', this.src);
+                    // Set placeholder for slider items
+                    if (this.classList.contains('slider-item-img')) {
+                        this.src = 'https://via.placeholder.com/300x180/7cb342/ffffff?text=' + encodeURIComponent(this.alt);
+                    } else if (this.classList.contains('publication-cover')) {
+                        this.src = 'https://via.placeholder.com/250x350/2d8a4e/ffffff?text=' + encodeURIComponent(this.alt);
+                    } else if (this.classList.contains('gallery-img')) {
+                        this.src = 'https://via.placeholder.com/300x200/1a5632/ffffff?text=' + encodeURIComponent(this.alt);
+                    } else if (this.classList.contains('clinic-image')) {
+                        this.src = 'https://via.placeholder.com/800x500/7cb342/ffffff?text=Farmers+Clinic+Market';
+                    } else if (this.classList.contains('app-flyer-large')) {
+                        this.src = 'https://via.placeholder.com/800x600/1a5632/ffffff?text=Digital+App+Coming+Soon';
+                    } else if (this.classList.contains('hero-image')) {
+                        this.src = 'https://via.placeholder.com/800x600/2d8a4e/ffffff?text=Big2Projects+Farming';
+                    }
+                });
+            });
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            initializeTeamSlider();
+            initializeSliders();
+        });
+    </script>
+</body>
+</html>
