@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer's Clinic Market - Big2Projects</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="nav-wrapper" id="navbar">
+        <nav>
+            <div class="logo-container">
+                <div>
+                    <img src="Logo B2P.png" alt="Big2Projects Logo" class="logo-img">
+                </div>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="clinic.html">Farmer's Clinic Market</a></li>
+                <li><a href="opportunities.html">Opportunities</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Farmer's Clinic Market</h1>
+                <h2>Your Trusted Agricultural Partner</h2>
+                <p>Comprehensive agricultural support hub providing end-to-end solutions for farmers at every stage of their journey.</p>
+                <div class="hero-buttons">
+                    <a href="#products" class="btn btn-primary">View Products</a>
+                    <a href="#services" class="btn btn-secondary">Our Services</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-image-container">
+                    <img src="1000011217 (1).jpg" alt="Farmer's Clinic Market" class="hero-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Farmer's Clinic Section -->
+    <section id="clinic" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Farmer's Clinic Market</h2>
+            <p class="section-subtitle">Your trusted partner in agricultural excellence and farmer support</p>
+        </div>
+        
+        <div class="clinic-content">
+            <div>
+                <h3 id="services">Comprehensive Agricultural Support Hub</h3>
+                <p>The Farmer's Clinic Market serves as both a physical hub and knowledge center, providing end-to-end support for farmers at every stage of their agricultural journey.</p>
+                <ul class="services-list">
+                    <li>Farmer Advisory & Extension Support</li>
+                    <li>Input Supply and Produce Marketing</li>
+                    <li>Consultancy and Agribusiness Training</li>
+                    <li>Organic Fertilizer Production</li>
+                    <li>Market Linkages for Cooperatives</li>
+                    <li>Climate-Smart Farming Techniques</li>
+                    <li>Crop Production Management</li>
+                    <li>Soil Health Assessment</li>
+                </ul>
+            </div>
+            <div>
+                <img src="1000011217 (1).jpg" alt="Farmer's Clinic Market - Full Image" class="clinic-image">
+            </div>
+        </div>
+
+        <!-- Agricultural Products Slider -->
+        <div class="products-slider-section" id="products">
+            <div class="slider-container">
+                <div class="slider-header">
+                    🌱 Fresh Farm Products
+                    <span class="slider-scroll-indicator">Scroll →</span>
+                </div>
+                <div class="slider-wrapper">
+                    <div class="slider-track-container">
+                        <div class="slider-track" id="productsSlider">
+                            <div class="slider-item">
+                                <img src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Fresh Tomatoes" class="slider-item-img">
+                                <div class="slider-item-info">
+                                    <h4>Fresh Tomatoes</h4>
+                                    <p>High-quality, organically grown tomatoes</p>
+                                    <span class="slider-price">MK 1,500/kg</span>
+                                    <button class="whatsapp-btn" onclick="openWhatsApp('I would like to purchase Fresh Tomatoes')">
+                                        <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="slider-item">
+                                <img src="https://th.bing.com/th/id/OIP.S1JJsFKgOStYmBrMdCOnGwHaFG?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Fresh Onions" class="slider-item-img">
+                                <div class="slider-item-info">
+                                    <h4>Fresh Onions</h4>
+                                    <p>Premium quality onions, perfect for cooking</p>
+                                    <span class="slider-price">MK 2,000/kg</span>
+                                    <button class="whatsapp-btn" onclick="openWhatsApp('I would like to purchase Fresh Onions')">
+                                        <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="slider-item">
+                                <img src="IMG-20260127-WA0044.jpg" alt="Fresh Cabbage" class="slider-item-img">
+                                <div class="slider-item-info">
+                                    <h4>Fresh Cabbage</h4>
+                                    <p>Organic cabbage, crisp and nutritious</p>
+                                    <span class="slider-price">MK 1000/head</span>
+                                    <button class="whatsapp-btn" onclick="openWhatsApp('I would like to purchase Fresh Cabbage')">
+                                        <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="slider-item">
+                                <img src="https://epicureanearth.com/wp-content/uploads/2024/09/all-about-the-carrot-scaled.jpg" alt="Fresh Carrots" class="slider-item-img">
+                                <div class="slider-item-info">
+                                    <h4>Fresh Carrots</h4>
+                                    <p>Sweet, crunchy carrots</p>
+                                    <span class="slider-price">MK 2,000/kg</span>
+                                    <button class="whatsapp-btn" onclick="openWhatsApp('I would like to purchase Fresh Carrots')">
+                                        <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="slider-item">
+                                <img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Fresh Potatoes" class="slider-item-img">
+                                <div class="slider-item-info">
+                                    <h4>Fresh Potatoes</h4>
+                                    <p>Quality potatoes for all your cooking needs</p>
+                                    <span class="slider-price">MK 2,000/kg</span>
+                                    <button class="whatsapp-btn" onclick="openWhatsApp('I would like to purchase Fresh Potatoes')">
+                                        <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="scroll-indicator"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Farm Chemicals Slider -->
+            <div class="slider-container" style="margin-top: 1.5rem;">
+                <div class="slider-header">
+                    Farm Chemicals & Pesticides
+                    <span class="slider-scroll-indicator">Scroll →</span>
+                </div>
+                <div class="slider-wrapper">
+                    <div class="slider-track-container">
+                        <div class="slider-track" id="chemicalsSlider">
+                            <div class="slider-item">
+                                <img src="IMG-20260127-WA0030.jpg" alt="Organic Fertilizer" class="slider-item-img">
+                                <div class="slider-item-info">
+                                    <h4>Cypermethrin</h4>
+                                    <p>Insecticide</p>
+                                    <button class="whatsapp-btn" onclick="openWhatsApp('I would like to purchase Cypermethrin Insecticide')">
+                                        <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="slider-item">
+                                <img src="IMG-20260127-WA0033.jpg" alt="Organic Pesticide" class="slider-item-img">
+                                <div class="slider-item-info">
+                                    <h4>Dithane</h4>
+                                    <p>Fungicide</p>
+                                    <button class="whatsapp-btn" onclick="openWhatsApp('I would like to purchase Dithane Fungicide')">
+                                        <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="slider-item">
+                                <img src="IMG-20260127-WA0031.jpg" alt="Selective Herbicide" class="slider-item-img">
+                                <div class="slider-item-info">
+                                    <h4>Emaben</h4>
+                                    <p>Insecticide</p>
+                                    <button class="whatsapp-btn" onclick="openWhatsApp('I would like to purchase Emaben Insecticide')">
+                                        <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="slider-item">
+                                <img src="IMG-20260127-WA0029.jpg" alt="Fungicide" class="slider-item-img">
+                                <div class="slider-item-info">
+                                    <h4>Abamectin</h4>
+                                    <p>Insecticide</p>
+                                    <button class="whatsapp-btn" onclick="openWhatsApp('I would like to purchase Abamectin Insecticide')">
+                                        <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="scroll-indicator"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="section" style="background: linear-gradient(135deg, var(--medium-green), var(--deep-green)); color: white; text-align: center;">
+        <h2 style="font-family: 'Montserrat', sans-serif; font-size: 1.5rem; margin-bottom: 1rem;">Need Agricultural Support?</h2>
+        <p style="margin-bottom: 1.5rem; max-width: 600px; margin-left: auto; margin-right: auto;">Contact our Farmer's Clinic team for expert advice, products, and services tailored to your agricultural needs.</p>
+        <a href="contact.html" class="btn btn-primary">Contact Us Now</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-about">
+                <h3>Big2Projects Organization</h3>
+                <p>Building a continental agri-movement dedicated to sustainable agricultural production, youth empowerment, and environmental conservation across Africa.</p>
+                <p style="margin-top: 1rem;"><strong>Motto:</strong> The Road to Million Farmers</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="clinic.html">Farmer's Clinic</a></li>
+                    <li><a href="opportunities.html">Opportunities</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="team.html">Team</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><span class="coming-soon-badge" style="font-size: 0.7rem; padding: 0.3rem 0.8rem;">Digital App Coming Soon</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023-2026 Big2Projects Organization. All rights reserved. | Beyond Farming</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

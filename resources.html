@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources - Big2Projects</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="nav-wrapper" id="navbar">
+        <nav>
+            <div class="logo-container">
+                <div>
+                    <img src="Logo B2P.png" alt="Big2Projects Logo" class="logo-img">
+                </div>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="clinic.html">Farmer's Clinic Market</a></li>
+                <li><a href="opportunities.html">Opportunities</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Resources</h1>
+                <h2>Knowledge Hub for Sustainable Agriculture</h2>
+                <p>Access our publications, educational materials, photo gallery, and comprehensive resources designed to empower farmers and agricultural enthusiasts.</p>
+                <div class="hero-buttons">
+                    <a href="#publications-tab" class="btn btn-primary" onclick="showPublicationsTab()">Publications</a>
+                    <a href="#gallery-tab" class="btn btn-secondary" onclick="showGalleryTab()">Gallery</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-image-container">
+                    <img src="Agricultu_20260131_011200_1.png" alt="Agricultural Resources" class="hero-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Our Resources</h2>
+            <p class="section-subtitle">Access our publications, books, and photo gallery for agricultural knowledge and inspiration</p>
+        </div>
+        
+        <div class="resources-tabs">
+            <button class="tab-btn active" data-tab="publications-tab"><i class="fas fa-book"></i> Publications</button>
+            <button class="tab-btn" data-tab="gallery-tab"><i class="fas fa-images"></i> Gallery</button>
+        </div>
+
+        <!-- Publications Tab -->
+        <div class="tab-content active" id="publications-tab">
+            <div class="publications-grid">
+                <div class="publication-card">
+                    <img src="Agricultu_20260131_011200_1.png" class="publication-cover" alt="Agriculture Hundred Years from Now">
+                    <div class="publication-info">
+                        <h3>Agriculture Hundred Years from Now</h3>
+                        <p>Effective and Responsive Food production amidst the global economic and climate change</p>
+                        <span class="publication-price">MK 20,000</span>
+                        <button class="whatsapp-btn" onclick="openWhatsApp('I would like to purchase the book titled - Agriculture Hundred Years from Now')">
+                            <i class="fab fa-whatsapp"></i> Purchase via WhatsApp
+                        </button>
+                    </div>
+                </div>
+                <div class="publication-card">
+                    <img src="https://imgv2-1-f.scribdassets.com/img/document/683670253/original/19797c0055/1710845373?v=1" alt="Sustainable Agriculture Handbook" class="publication-cover">
+                    <div class="publication-info">
+                        <h3>Guide to Agricultural Production</h3>
+                        <p>Official national reference for crop and livestock management, natural resources conservation and extension services</p>
+                        <span class="publication-price">Free</span>
+                        <button class="whatsapp-btn" onclick="openWhatsApp('I would like to purchase the Sustainable Agriculture Handbook')">
+                            <i class="fab fa-whatsapp"></i> Purchase via WhatsApp
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 1.5rem;">
+                <p style="font-size: 0.9rem; color: var(--gray-text); line-height: 1.5;">
+                    <strong>Payment Options:</strong> Mobile Money (Airtel/TNM) | Bank Transfer<br>
+                    Contact us for purchasing details and bulk orders
+                </p>
+            </div>
+        </div>
+
+        <!-- Gallery Tab -->
+        <div class="tab-content" id="gallery-tab">
+            <div class="gallery-container">
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="IMG-20260127-WA0054.jpg" alt="Big2Projects Activity 1" class="gallery-img">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="IMG-20260127-WA0057.jpg" alt="Big2Projects Activity 2" class="gallery-img">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="IMG-20260127-WA0063.jpg" alt="Big2Projects Activity 3" class="gallery-img">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="IMG-20260127-WA0064.jpg" alt="Big2Projects Activity 4" class="gallery-img">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="IMG-20260127-WA0037.jpg" alt="Big2Projects Activity 5" class="gallery-img">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="IMG-20260127-WA0045.jpg" alt="Big2Projects Activity 6" class="gallery-img">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="IMG-20260127-WA0058.jpg" alt="Big2Projects Activity 7" class="gallery-img">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="IMG-20260127-WA0048.jpg" alt="Big2Projects Activity 8" class="gallery-img">
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 1.5rem;">
+                <p style="font-size: 0.9rem; color: var(--gray-text); line-height: 1.5;">
+                    Browse through our photo gallery showcasing various agricultural activities, training sessions, field operations, and community engagements.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Resources -->
+    <section class="section" style="background: var(--off-white);">
+        <div class="section-header">
+            <h2 class="section-title">Digital Resources</h2>
+            <p class="section-subtitle">Access our digital content and upcoming platforms</p>
+        </div>
+        
+        <div id="digital-app">
+            <div class="digital-app-content">
+                <h2>📱 Digital App Coming Soon</h2>
+                <p>Be on the lookout for our revolutionary agricultural platform that will transform how farmers access information, markets, and resources.</p>
+                <img src="Big2 flyer.jpg" alt="Big2Projects App Coming Soon" class="app-flyer-large">
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="section" style="background: linear-gradient(135deg, var(--medium-green), var(--deep-green)); color: white; text-align: center;">
+        <h2 style="font-family: 'Montserrat', sans-serif; font-size: 1.5rem; margin-bottom: 1rem;">Need More Resources?</h2>
+        <p style="margin-bottom: 1.5rem; max-width: 600px; margin-left: auto; margin-right: auto;">Contact us for more information about our publications, educational materials, or to request specific agricultural resources.</p>
+        <a href="contact.html" class="btn btn-primary">Contact Us Now</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-about">
+                <h3>Big2Projects Organization</h3>
+                <p>Building a continental agri-movement dedicated to sustainable agricultural production, youth empowerment, and environmental conservation across Africa.</p>
+                <p style="margin-top: 1rem;"><strong>Motto:</strong> The Road to Million Farmers</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="clinic.html">Farmer's Clinic</a></li>
+                    <li><a href="opportunities.html">Opportunities</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="resources.html" onclick="showPublicationsTab()">Publications</a></li>
+                    <li><a href="resources.html" onclick="showGalleryTab()">Gallery</a></li>
+                    <li><a href="team.html">Team</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><span class="coming-soon-badge" style="font-size: 0.7rem; padding: 0.3rem 0.8rem;">Digital App Coming Soon</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023-2026 Big2Projects Organization. All rights reserved. | Beyond Farming</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Functions to show specific tabs
+        function showGalleryTab() {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            document.querySelector('[data-tab="gallery-tab"]').classList.add('active');
+            document.getElementById('gallery-tab').classList.add('active');
+        }
+
+        function showPublicationsTab() {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            document.querySelector('[data-tab="publications-tab"]').classList.add('active');
+            document.getElementById('publications-tab').classList.add('active');
+        }
+    </script>
+</body>
+</html>
